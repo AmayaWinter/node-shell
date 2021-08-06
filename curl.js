@@ -1,13 +1,11 @@
-const request = require('request');
+const request = require("request");
 
-module.exports = (args) => {
-  console.log(request(args[0], {}, (err, response, body) => {
-    if(err) {
-      console.log('Status Code', response.statusCode);
-      throw err;
-    }
-    console.log(body);
-    process.stdout.write('\nprompt> ');
-  }));
-
-}
+module.exports = (done, args) => {
+    request(args[0], {}, (err, response, body) => {
+      if (err) {
+        done(err);
+      }
+      done(body);
+      done("\nprompt> ");
+    });
+};

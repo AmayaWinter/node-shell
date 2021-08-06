@@ -12,18 +12,22 @@ process.stdin.on('data', (data) => {
 
   switch(cmd) {
     case 'pwd' :
-      pwd();
+      pwd(done);
       break;
     case 'ls':
-      ls();
+      ls(done);
       break;
     case 'cat':
-      cat(arguments);
+      cat(done, arguments);
       break;
     case 'curl':
-      curl(arguments);
+      curl(done, arguments);
       break;
   }
 
 });
 
+const done = (output) => {
+    console.log (output);
+    console.log("prompt>");
+}
